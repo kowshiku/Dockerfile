@@ -1,0 +1,43 @@
+#!/bin/bash
+version: "3.9"
+services:
+  web:
+    image: latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+
+=====================================
+#!/bin/bash
+    services:
+    app:
+        container_name: app
+        image: latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "8080:8080"
+=========================================
+
+
+docker-compose up -d
+docker-compose ps
+
+
+
+
+
+
+
+
+
+
+
+
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 157252177705.dkr.ecr.us-west-2.amazonaws.com
+docker build -t 157252177705.dkr.ecr.us-west-2.amazonaws.com/docker:latest .
+docker push 157252177705.dkr.ecr.us-west-2.amazonaws.com/docker:latest
+
+
