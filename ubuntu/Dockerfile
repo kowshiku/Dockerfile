@@ -20,6 +20,57 @@ COPY * /var/www/html/
 EXPOSE 80
 CMD apachectl -D FOREGROUND
 
+=======================
+tomcat dockerfile:
+======================
+FROM ubuntu:latest
+WORKDIR /opt/
+RUN apt-get update && apt-get install -y wget
+RUN apt install default-jdk -y
+RUN wget -P /opt/ https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.7/bin/apache-tomcat-10.1.7.tar.gz
+RUN tar -xvzf /opt/apache-tomcat-10.1.7.tar.gz 
+RUN mv /opt/apache-tomcat-10.1.7/ /opt/tomcat/ && chmod -R 755 /opt/tomcat/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #docker file react js 
 ----------------------
@@ -48,4 +99,22 @@ container command :
 docker exec -it imageid sh  
 
 
+#--------------------------------------
 
+# Dockerfile ubuntu tomcat 
+
+FROM ubuntu:latest
+RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y install openjdk-8-jdk wget
+RUN mkdir /usr/local/tomcat
+RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+RUN tar -xvzf apache-tomcat-10.0.27.tar.gz
+RUN mv apache-tomcat-10.0.27 tomcat 
+EXPOSE 8080
+CMD ["/opt/tomcat/bin/sh.startup.sh", "run"]
+
+
+# RUN 
+# RUN /usr/local/tomcat/
+# EXPOSE 8080
+# CMD /usr/local/tomcat/bin/catalina.sh run
