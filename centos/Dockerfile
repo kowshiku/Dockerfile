@@ -20,17 +20,17 @@ CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 # CMD  /usr/local/tomcat/bin/catalina.sh run
 
 
-FROM centos
+# FROM centos
 
-RUN mkdir /opt/tomcat/
+# RUN mkdir /opt/tomcat/
 
-WORKDIR /opt/tomcat
-RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
-RUN tar -xvzf apache-tomcat-10.0.27.tar.gz
-RUN mv apache-tomcat-10.0.27 tomcat 
-RUN yum -y install java
-RUN java -version
+# WORKDIR /opt/tomcat
+# RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+# RUN tar -xvzf apache-tomcat-10.0.27.tar.gz
+# RUN mv apache-tomcat-10.0.27 tomcat 
+# RUN yum -y install java
+# RUN java -version
 
-EXPOSE 8080
+# EXPOSE 8080
 
-CMD ["/opt/tomcat/bin/sh.startup.sh", "run"]
+# CMD ["/opt/tomcat/bin/sh.startup.sh", "run"]

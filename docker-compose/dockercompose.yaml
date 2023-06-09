@@ -1,43 +1,88 @@
-#!/bin/bash
-version: "3.9"
+#two Dockerfile write docker compose.yml file 
+version: '3'
 services:
-  web:
-    image: latest
+  apache:
     build:
-      context: ./
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: apache-Dockerfile
+    ports:
+      - "8002:80"
 
-=====================================
-#!/bin/bash
-    services:
-    app:
-        container_name: app
-        image: latest
-        build:
-            context: .
-            dockerfile: Dockerfile
-        restart: always
-        ports:
-            - "8080:8080"
-=========================================
+  static:
+    build:
+      context: .
+      dockerfile: static-Dockerfile
+    ports:
+      - "8000:80"
 
 
-docker-compose up -d
-docker-compose ps
+#   =====================================
 
-
-
-
-
-
-
+version: "3"
+services:
+  apache:
+    image: "httpd"
+    ports:
+      - "8002:80"
+  nginx:
+    image: "nginx"
+    ports:
+      - "8003:80"
 
 
 
 
 
-aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 157252177705.dkr.ecr.us-west-2.amazonaws.com
-docker build -t 157252177705.dkr.ecr.us-west-2.amazonaws.com/docker:latest .
-docker push 157252177705.dkr.ecr.us-west-2.amazonaws.com/docker:latest
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #!/bin/bash
+# version: "3.9"
+# services:
+#   web:
+#     image: latest
+#     build:
+#       context: ./
+#       dockerfile: Dockerfile
+
+# =====================================
+# #!/bin/bash
+#     services:
+#     app:
+#         container_name: app
+#         image: latest
+#         build:
+#             context: .
+#             dockerfile: Dockerfile
+#         restart: always
+#         ports:
+#             - "8080:8080"
+# =========================================
+
+
+# docker-compose up -d
+# docker-compose ps
+
+
+
+
+
+
+
+
+
+
+
+
 
 

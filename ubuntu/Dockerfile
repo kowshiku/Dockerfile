@@ -8,28 +8,31 @@ EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
 
 #dockerfile jquery-template
-==============================
-FROM ubuntu
-RUN apt-get update -y
-RUN apt-get install  apache2 -y
-RUN mkdir static
-WORKDIR static
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page285/meyawo.zip .
-WORKDIR meyawo
-COPY * /var/www/html/
+# ==============================
+ARG TAG=latest
+FROM ubuntu:${TAG}
+RUN apt update \
+   && apt install -y apache2 zip \
+   && apt install -y apache2-utils \
+   && apt clean
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page292/grandcoffee.zip /tmp/
+RUN cd /tmp \
+    && unzip /tmp/grandcoffee.zip \
+    && cp -r /tmp/html/* /var/www/html/
+# COPY grandcoffee.zip /tmp/
 EXPOSE 80
-CMD apachectl -D FOREGROUND
+CMD ["apache2ctl", "-D", "FOREGROUND"]
 
-=======================
-tomcat dockerfile:
-======================
-FROM ubuntu:latest
-WORKDIR /opt/
-RUN apt-get update && apt-get install -y wget
-RUN apt install default-jdk -y
-RUN wget -P /opt/ https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.7/bin/apache-tomcat-10.1.7.tar.gz
-RUN tar -xvzf /opt/apache-tomcat-10.1.7.tar.gz 
-RUN mv /opt/apache-tomcat-10.1.7/ /opt/tomcat/ && chmod -R 755 /opt/tomcat/
+# =======================
+# tomcat dockerfile:
+# ======================
+# FROM ubuntu:latest
+# WORKDIR /opt/
+# RUN apt-get update && apt-get install -y wget
+# RUN apt install default-jdk -y
+# RUN wget -P /opt/ https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.7/bin/apache-tomcat-10.1.7.tar.gz
+# RUN tar -xvzf /opt/apache-tomcat-10.1.7.tar.gz 
+# RUN mv /opt/apache-tomcat-10.1.7/ /opt/tomcat/ && chmod -R 755 /opt/tomcat/
 
 
 
